@@ -19,6 +19,7 @@ class SpringbootIntegrationTestApplicationTests {
     void contextLoads() {
     }
 
+
     @Test
     void hadoopTest() throws Exception {
 
