@@ -3,6 +3,9 @@ package com.example.springbootintegrationtest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author wuxinxin
+ */
 @SpringBootApplication
 public class SpringbootIntegrationTestApplication {
 

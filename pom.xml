@@ -28,11 +28,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>com.example</groupId>
             <artifactId>autoconfig-test-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
 
         <!--集成hadoop-->
     <dependency>

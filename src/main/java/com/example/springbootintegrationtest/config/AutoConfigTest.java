@@ -1,6 +1,6 @@
 package com.example.springbootintegrationtest.config;
 
-//import com.example.test.autoconfig.BambooServer;
+import com.example.test.autoconfig.BambooServer;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AutoConfigTest implements ApplicationContextAware {
 
-    /*@Autowired
-    private BambooServer bambooServer;*/
+    @Autowired
+    private BambooServer bambooServer;
 
 
     private ApplicationContext applicationContext;
@@ -25,7 +25,7 @@ public class AutoConfigTest implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext=applicationContext;
-        //System.out.println(bambooServer);
-        //System.out.println(bambooServer.getName());
+        System.out.println(bambooServer);
+        System.out.println(bambooServer.getName());
     }
 }
