@@ -1,13 +1,11 @@
 package com.example.springbootintegrationtest;
 
-import org.apache.hadoop.fs.FSDataOutputStream;
+//import com.example.test.autoconfig.BambooServer;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.io.IOException;
 
 @SpringBootTest
 class SpringbootIntegrationTestApplicationTests {
@@ -15,9 +13,13 @@ class SpringbootIntegrationTestApplicationTests {
     @Autowired
     private FileSystem fileSystem;
 
-    @Test
+    /*@Autowired
+    private BambooServer bambooServer;*/
+
+   /* @Test
     void contextLoads() {
-    }
+        System.out.println(bambooServer.getName());
+    }*/
 
 
     @Test
@@ -26,6 +28,16 @@ class SpringbootIntegrationTestApplicationTests {
         fileSystem.copyFromLocalFile(
                 new Path("/Users/wuxinxin/IdeaProjects/springboot-integration-test/src/main/java/com/example/springbootintegrationtest/config/HadoopConfig.java"),
                 new Path("/user"));
+
+    }
+
+
+    @Test
+    void hadoopTest1() throws Exception {
+
+        fileSystem.copyToLocalFile(
+                new Path("/user"),
+                new Path("test.java"));
 
     }
 

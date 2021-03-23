@@ -6,14 +6,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  * 集成hadoop
  */
 @Configuration
 public class HadoopConfig {
-
 
     @Value("${hadoop.node}")
     private String hadoopNode;
