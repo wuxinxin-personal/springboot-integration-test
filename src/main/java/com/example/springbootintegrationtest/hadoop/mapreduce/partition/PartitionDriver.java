@@ -1,20 +1,20 @@
-package com.example.springbootintegrationtest.hadoop.mapreduce.wordcount;
+package com.example.springbootintegrationtest.hadoop.mapreduce.partition;
 
+import com.example.springbootintegrationtest.hadoop.mapreduce.model.UserInfo;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.CombineFileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
 /**
  * 实现WordCount
  * @author wuxinxin
  */
-public class WordCountDriver {
+public class PartitionDriver {
 
     public static void main(String[] args) throws Exception {
 
@@ -25,23 +25,23 @@ public class WordCountDriver {
         Job job = Job.getInstance(conf);
 
         //设置jar存储位置
-        job.setJarByClass(WordCountDriver.class);
+        job.setJarByClass(PartitionDriver.class);
 
         //关联map和reduce程序
-        job.setMapperClass(WordCountMap.class);
-        job.setReducerClass(WordCountReduce.class);
+        job.setMapperClass(PartitionMap.class);
+        job.setReducerClass(PartitionReduce.class);
 
         //设置map阶段输出key,value类型
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(IntWritable.class);
+        job.setMapOutputValueClass(UserInfo.class);
 
         //设置最终输出结果的key,value类型
-        job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputKeyClass(UserInfo.class);
+        job.setOutputValueClass(NullWritable.class);
 
-        //设置使用的InputFormat为CombineTextInputFormat
-        //job.setInputFormatClass(CombineTextInputFormat.class);
-        //CombineTextInputFormat.setMaxInputSplitSize(job,20L);
+        //设置分区
+        job.setPartitionerClass(MyPartition.class);
+        job.setNumReduceTasks(5);
         //设置输出路径和输入路径
         FileInputFormat.setInputPaths(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job,new Path(args[1]));
